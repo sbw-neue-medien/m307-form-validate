@@ -34,6 +34,11 @@ main {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
+/* radio button container hat keinen border */
+#main-form>div .radios {
+  box-shadow: none;
+}
+
 input:not([type="submit"]):not([type="radio"]),
 textarea {
   background: linear-gradient(45deg, #5f2c82, #49a09d);
@@ -50,22 +55,82 @@ textarea {
   max-width: calc(15em + 8em);
   color: inherit;
 }
+
 #main-form #main-button:hover {
   box-shadow: none;
 
 }
+
 #main-form input {
   height: 2em;
   border: none;
   padding-inline: 0.75em;
   border-radius: 0.8em;
-  transition: box-shadow 200ms;
+  transition: box-shadow 200ms
+}
+
+#main-form input:hover {
+  background: #49a09d;
 }
 
 #main-form input:focus {
   background: #5f2c82;
-  box-shadow: none;
 }
+
+/* our own checkboxes */
+label.container input[type=radio] {
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+label.container {
+  position: relative;
+  padding-left: 1.25em;
+}
+
+/* our own radio buttons */
+label.container input[type=radio] ~.radiobtn {
+  position: absolute;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  height: 1em;
+  width: 1em;
+  background-color: #5f2c82;
+  border-radius: 50%;
+}
+
+label.container input[type="radio"]:checked ~.radiobtn {
+  background-color: #5f2c82;
+}
+
+label.container:hover input[type="radio"] ~.radiobtn {
+  background-color: #49a09d;
+}
+
+/* The dot is placed after the span */
+label.container input[type="radio"]~.radiobtn:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+label.container input[type="radio"]~.radiobtn:after {
+  top: 0.25em;
+  left: 0.25em;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: white;
+}
+
+/* Show the dot when checked */
+label.container input[type="radio"]:checked~.radiobtn:after {
+  display: block;
+}
+
 footer {
   font-size: 0.5em;
   display: flex;
